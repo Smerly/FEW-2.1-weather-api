@@ -87,29 +87,48 @@
 			const descEl = document.getElementById('desc');
 			const formEl = document.getElementById('form');
 			const zipInput = document.getElementById('zip');
+			const apikey = 'a1faba83107bd1140d4538408420862f';
 
 			// Define event listeners
 
-			formEl.addEventListener('submit', (e) => {
-				e.preventDefault();
-				const zip = zipInput.value;
-				getWeather('a1faba83107bd1140d4538408420862f', zip, (temp, desc) => {
-					tempEl.innerHTML = temp;
-					descEl.innerHTML = desc;
-				});
-			});
+			// Challenge 2
 
 			// formEl.addEventListener('submit', (e) => {
 			// 	e.preventDefault();
 			// 	const zip = zipInput.value;
-			// 	getWeather(
-			// 		'a1faba83107bd1140d4538408420862f',
-			// 		zip // , (temp, desc) => {
-			// 		// tempEl.innerHTML = temp;
-			// 		// descEl.innerHTML = desc;
-			// 		// }
-			// 	).then((data) => {})
+			// 	getWeather('a1faba83107bd1140d4538408420862f', zip, (temp, desc) => {
+			// 		tempEl.innerHTML = temp;
+			// 		descEl.innerHTML = desc;
+			// 	});
 			// });
+
+			// Challenge 3
+
+			// formEl.addEventListener('submit', (e) => {
+			// 	e.preventDefault();
+			// 	const zip = zipInput.value;
+
+			// 	getWeather(zip, apikey)
+			// 		.then((data) => {
+			// 			tempEl.innerHTML = data.main.temp;
+			// 			descEl.innerHTML = data.weather[0].description;
+			// 		})
+			// 		.catch((err) => console.log(err.message));
+			// });
+
+			// Challenge 4
+
+			formEl.addEventListener('submit', (e) => {
+				e.preventDefault();
+				const zip = zipInput.value;
+
+				getWeather(zip, apikey)
+					.then((data) => {
+						tempEl.innerHTML = data.main.temp;
+						descEl.innerHTML = data.weather[0].description;
+					})
+					.catch((err) => console.log(err.message));
+			});
 
 			// Functions
 		</script>
