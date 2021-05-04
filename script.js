@@ -14,19 +14,32 @@
 // Challenge 3
 
 // function getWeather(zip, apikey, units = 'imperial') {
-// 	const resPromise = fetch(path);
 // 	const path = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${apikey}&units=${units}`;
+// 	const resPromise = fetch(path);
 
 // 	const jsonP = resPromise.then((res) => res.json());
+// 	return jsonP;
+// return fetch(path).then((res) => res.json());
 // }
 
 // Challenge 4
 
-function getWeather(zip, apikey, units = 'imperial') {
-	const resPromise = fetch(path);
-	const path = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${apikey}&units=${units}`;
+// async function getWeather(zip, apikey, units = 'imperial') {
+// 	const path = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${apikey}&units=${units}`;
+// 	const res = await fetch(path);
 
-	const jsonP = resPromise.then((res) => res.json());
+// 	const json = await res.json();
+// 	return json;
+// }
+
+// Challenge 5
+
+async function getWeather(zip, apikey, units = 'imperial') {
+	const path = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${apikey}&units=${units}`;
+	const res = await fetch(path);
+
+	const json = await res.json();
+	return json;
 }
 
 // module.exports = {
