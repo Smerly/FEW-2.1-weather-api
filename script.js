@@ -34,16 +34,70 @@
 
 // Challenge 5
 
-async function getWeather(zip, apikey, units = 'imperial') {
-	const path = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${apikey}&units=${units}`;
-	const res = await fetch(path);
+// async function getWeather(zip, apikey, units = 'imperial') {
+// 	const path = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${apikey}&units=${units}`;
 
-	const json = await res.json();
-	return json;
+// 	try {
+// 		const res = await fetch(path);
+// 		const json = await res.json();
+// 		const weatherData = {
+// 			code: json.cod,
+// 			temp: json.main.temp,
+// 			weather: json.weather[0].description,
+// 			coord: json.coord,
+// 			feels_like: json.main.feels_like,
+// 			temp_min: json.main.temp_min,
+// 			temp_max: json.main.temp_max,
+// 			humidity: json.main.humidity,
+// 			pressure: json.main.pressure,
+// 		};
+// 		return weatherData;
+// 		return json;
+// 	} catch (err) {
+// 		return err;
+// 	}
+// }
+
+// Challenge 7
+
+async function getWeather(path) {
+	try {
+		const res = await fetch(path);
+		const json = await res.json();
+		const weatherData = {
+			code: json.cod,
+			temp: json.main.temp,
+			weather: json.weather[0].description,
+			coord: json.coord,
+			feels_like: json.main.feels_like,
+			temp_min: json.main.temp_min,
+			temp_max: json.main.temp_max,
+			humidity: json.main.humidity,
+			pressure: json.main.pressure,
+		};
+		return weatherData;
+	} catch (err) {
+		return err;
+	}
+}
+
+function getWeatherByZip(apikey, zip, units = 'imperial') {
+	const path = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${apikey}&units=${units}`;
+	return getWeather(path);
+}
+
+function getWeatherByCity(apikey, city, units = 'imperial') {
+	const path = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}&units=${units}`;
+	return getWeather(path);
+}
+
+function getWeatherByGeo(apikey, lat, lon, units = 'imperial') {
+	const path = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}?lon=${lon}&appid=${apikey}&units=${units}`;
+	return getWeather(path);
 }
 
 // module.exports = {
 // 	getWeather,
 // };
 
-export default getWeather;
+export { getWeather, getWeatherByCity, getWeatherByZip, getWeatherByGeo };
